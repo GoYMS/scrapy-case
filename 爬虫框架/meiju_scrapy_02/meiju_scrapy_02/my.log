@@ -1,0 +1,5 @@
+2019-08-23 16:08:32 [scrapy.core.engine] ERROR: Scraper close failure
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+TypeError: close_spider() takes 1 positional argument but 2 were given

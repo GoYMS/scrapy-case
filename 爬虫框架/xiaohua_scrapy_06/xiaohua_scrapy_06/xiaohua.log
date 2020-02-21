@@ -1,0 +1,94 @@
+2019-08-26 11:13:56 [scrapy.core.scraper] ERROR: Spider error processing <GET http://www.xiaohuar.com/2014.html> (referer: None)
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/utils/defer.py", line 102, in iter_errback
+    yield next(it)
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/referer.py", line 339, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/爬虫/爬虫框架/xiaohua_scrapy_06/xiaohua_scrapy_06/spiders/xiaohua.py", line 14, in parse
+    title = info.xpath('./div[@class="title"]/span/a/text()').extract()[0]
+IndexError: list index out of range
+2019-08-26 11:16:11 [scrapy.core.scraper] ERROR: Spider error processing <GET http://www.xiaohuar.com/2014.html> (referer: None)
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/utils/defer.py", line 102, in iter_errback
+    yield next(it)
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/referer.py", line 339, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/爬虫/爬虫框架/xiaohua_scrapy_06/xiaohua_scrapy_06/spiders/xiaohua.py", line 15, in parse
+    hrefs = info.xpath('./div[@class="title"]/span/a/@href').extract()[0]
+IndexError: list index out of range
+2019-08-26 11:16:28 [scrapy.core.scraper] ERROR: Spider error processing <GET http://www.xiaohuar.com/2014.html> (referer: None)
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/utils/defer.py", line 102, in iter_errback
+    yield next(it)
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/referer.py", line 339, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/spidermw.py", line 84, in evaluate_iterable
+    for r in iterable:
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/爬虫/爬虫框架/xiaohua_scrapy_06/xiaohua_scrapy_06/spiders/xiaohua.py", line 15, in parse
+    hrefs = info.xpath('./div[@class="title"]/span/a/@href').extract()[0]
+IndexError: list index out of range
+2019-08-27 15:44:48 [scrapy.core.scraper] ERROR: Error downloading <GET http://www.xiaohuar.com/2014.html>
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/selenium/webdriver/common/service.py", line 76, in start
+    stdin=PIPE)
+  File "/usr/lib/python3.5/subprocess.py", line 947, in __init__
+    restore_signals, start_new_session)
+  File "/usr/lib/python3.5/subprocess.py", line 1551, in _execute_child
+    raise child_exception_type(errno_num, err_msg)
+FileNotFoundError: [Errno 2] No such file or directory: 'phantomjs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/twisted/internet/defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/scrapy/core/downloader/middleware.py", line 38, in process_request
+    response = yield method(request=request, spider=spider)
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/爬虫/爬虫框架/xiaohua_scrapy_06/xiaohua_scrapy_06/mymiddlewares.py", line 12, in process_request
+    driver = webdriver.PhantomJS()
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/selenium/webdriver/phantomjs/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/home/tlxy/下载/Pycharm/PycharmDemo/venv/lib/python3.5/site-packages/selenium/webdriver/common/service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'phantomjs' executable needs to be in PATH. 
+

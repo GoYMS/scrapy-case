@@ -1,0 +1,413 @@
+<!doctype html>
+<html><head>
+<script src="jquery.js"></script>
+<script>
+$(function(){
+	//功能区交互效果
+	var img_num=0//记录图像位置数
+	$(".shop dl").mouseenter(//鼠标经过
+		function(){
+		img_num = $(".shop dl").index($(this))//这张图位置数就是当前标题是四个标题中的哪一个
+		//四个按钮都恢复到灰色图
+		$(".d_title img:eq(0)").attr("src","images/shop_img00_gray.png")
+		$(".d_title img:eq(1)").attr("src","images/shop_img01_gray.png")
+		$(".d_title img:eq(2)").attr("src","images/shop_img02_gray.png")
+		$(".d_title img:eq(3)").attr("src","images/shop_img03_gray.png")
+		//当前按钮的图片属性设置为彩色的图
+		$(this).find("img").attr("src","images/shop_img0"+img_num+".png")
+		}
+	)
+	//广告区交互效果
+	//控图圆形按钮
+	var n=0//广告图的位置数
+	$(".ctrl span").click(
+		function(){
+		$(".ctrl span").removeClass("current")//所有按钮去掉当前样式类
+		$(this).addClass("current")//点谁谁添加当前样式类
+		n=$(this).index()//当前按钮是第几个
+		
+		$(".banner_box ul").stop().animate({marginLeft:-960-(1920*n)})//让图片行走相应的距离
+		}
+	)
+	//箭头控图
+	$(".a_right").click(//点右箭头
+		function(){
+			if(n>0){
+			n=n-1
+			}else{
+			n=0	
+			}
+			
+			$(".banner_box ul").stop().animate({marginLeft:-960-(1920*n)})
+			//圆形按钮的提示样式更换
+			$(".ctrl span").removeClass("current")
+		$(".ctrl span").eq(n).addClass("current")
+		}
+	)
+	$(".a_left").click(//点左箭头
+		function(){			
+			if(n<3){
+			n=n+1	
+			}else{
+			n=3	
+			}
+			
+			$(".banner_box ul").stop().animate({marginLeft:-960-(1920*n)})
+			//圆形按钮的提示样式更换
+			$(".ctrl span").removeClass("current")
+		$(".ctrl span").eq(n).addClass("current")
+		}
+	)
+	//定时器
+	var tLeft=setInterval(runLeft,3000)//自动向左走
+	var tRight//自动向右走的变量名
+	//向左走
+	function runLeft(){
+		if(n<3){
+		n=n+1
+		}else{
+		n=3
+		clearInterval(tLeft)//到尾端停止向左走
+		tRight=setInterval(runRight,3000)//开始反方向走
+		}
+	
+		$(".banner_box ul").stop().animate({marginLeft:-960-(1920*n)})
+		//圆形按钮的提示样式更换
+		$(".ctrl span").removeClass("current")
+		$(".ctrl span").eq(n).addClass("current")	
+	}
+	//向右走
+	function runRight(){
+		if(n>0){
+		n=n-1	
+		}else{
+		n=0
+		clearInterval(runRight)//到顶端停止向右走
+		tLeft=setInterval(runLeft,3000)//开始反方向走
+		}
+
+		$(".banner_box ul").stop().animate({marginLeft:-960-(1920*n)})	
+		//圆形按钮的提示样式更换
+		$(".ctrl span").removeClass("current")
+		$(".ctrl span").eq(n).addClass("current")
+	}
+	
+	
+})
+</script>
+<style>
+ul{margin:0;padding:0;}
+li{list-style:none;}
+body,html,img{ border:0; margin:0; display:block;}
+p{line-height: 22px;}
+.header{ width:100%; height:80px; background-color:#cae568;}
+.center{ width:1200px; margin-left:auto; margin-right:auto; overflow:hidden;}
+.logo{ margin-top:17px; float:left}
+.order{ width:130px; height:40px; background-color:#FFFFFF; float:right; font-size:18px; border-radius:6px; line-height:40px; text-align:center; margin-top:21px; color:#cae568; font-family:simhei;}
+.nav{ float:right; margin-right:60px;}
+.nav a{font-family:simhei; color:#808080; font-size:18px; margin-left:76px; line-height:80px; text-decoration: none;}
+.banner_box{position:relative;margin-left:auto;margin-right:auto;overflow:hidden;}
+.banner_box img{height:620px;width:1920px;}
+.banner_box ul{position:relative;top:0;left:50%;width:7680px;margin-left:-960px;}
+.banner_box li{float:left;}
+
+
+.langlang{ width:100%;background-image: -moz-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -webkit-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -ms-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); height:700px;}
+.langlang_nav{ width:6px; height:700px; background:#ffffff; position:absolute; top:0px; left:754px; padding-top:30px; }
+.langlang_nav img{ margin-left:-15px; margin-top:12px;}
+.langlang .img1{ position:absolute; top:20px;}
+.langlang .img2{ position:absolute; top:21px; left:376px;}
+.langlang .img3{ position:absolute; top:170px; left:60px;}
+.langlang .img4{ position:absolute; top:340px; left:400px;}
+.langlang .img5{ position:absolute; top:326px; left:840px;}
+.langlang .langlang_title{ position:absolute; top:26px; left:812px; width:326px; color:#6c7c22; font-family:simhei; font-size:18px;}
+.langlang .langlang_title .langlang_content{ margin-bottom:12px;}
+.langlang1 .haxiandao{ width:700px; height:273px; background-color:#eef9b8; position:absolute; top:380px; left:420px;border:#cbdb96 solid 4px;}
+.langlang1{ position:relative; width:1200px; margin-left:auto; margin-right:auto; }
+.haxiandao img{ margin-left:auto; margin-right:auto; margin-top:32px;}
+.haxiandao p{ width:700px; text-align:center; margin-top:10px; color:#809D2C; font-family:simhei; font-size:24px;}
+.haxiandao .chi{ width:206px; margin-left:10px; margin-top:20px; float:left;}
+.haxiandao .zhu{ width:206px; margin-left:10px; margin-top:20px; float:left;}
+.haxiandao .zhu .zhu_title{color:#6a781f; font-family:simhei; font-size:72px; font-weight:900; float:left; }
+.haxiandao .zhu .zzhaijingfang{color:#809D2C; font-family:simhei; font-size:18px; font-weight:900; float:right;text-align:left;width:130px; line-height: 26px;}
+.haxiandao .zhu .zhu_contect{color:#6c7c22; font-family:simhei; font-size:12px; font-weight:900; width:130px; float:right; line-height: 16px;}
+.haxiandao .wan{ width:206px; margin-left:10px; margin-top:20px; float:left;}
+.haxiandao .wan .wan_title{color:#6a781f; font-family:simhei; font-size:72px; font-weight:900; float:left;}
+.haxiandao .wan .chuhaidayu{color:#809D2C; font-family:simhei; font-size:18px; font-weight:900; float:right; width:128px; text-align:left; line-height: 26px;}
+.haxiandao .wan .wan_contect{color:#6c7c22; font-family:simhei; font-size:12px; font-weight:900; width:130px; float:right; line-height: 16px;}
+.haxiandao .chi .chi_title{color:#6a781f; font-family:simhei; font-size:72px; font-weight:900; float:left;}
+.haxiandao .chi .didaohaixian{color:#809D2C; font-family:simhei; font-size:18px; font-weight:900; float:right;text-align:left;width:130px; line-height: 26px;}
+.haxiandao .chi .chi_contect{color:#6c7c22; font-family:simhei; font-size:12px; font-weight:900; width:130px; float:right; line-height: 16px;}
+.gege{ width:4px; height:45px; background-color:#6a781f; margin-top:50px; float:left; margin-left:16px;}
+.haijingfang{width:100%;background-image: -moz-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -webkit-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -ms-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); height:880px; }
+.haijingfang_center{position:relative; width:1200px; margin-left:auto; margin-right:auto;}
+.haijingfang .img1{ position:absolute; top:-70px; left:26px;}
+.haijingfang .img2{ position:absolute; top:305px; left:68px;}
+.haijingfang .img3{ position:absolute; top:408px; left:800px;}
+.haijingfang_nav{ width:6px; height:880px; background:#ffffff; position:absolute; top:0px; left:754px; padding-top:30px; }
+.haijingfang_nav img{ margin-left:-15px; margin-top:12px;}
+.haijingfang_title{position:absolute; top:105px; left:420px;width:300px; color:#6c7c22; font-family:simhei; font-size:18px; }
+.haijingfang_title p{ float:right; display:block; line-height: 26px;}
+.haijingfang_title img{ margin-left:auto; margin-right:auto;}
+.zzdhaijingfang{position:absolute; top:60px; left:800px;}
+.zzdhaijingfang .zzd_title{ color:#6c7b26; font-size:34px; font-weight:900;}
+.zzdhaijingfang p{ width:320px;color:#6c7c22; font-family:simhei; font-size:14px; margin-top:10px;}
+.zzdhaijingfang img{ margin-bottom:12px;}
+.ylxx{position:absolute; top:665px; left:220px; width:460px;}
+.ylxx .ylxx_title{color:#6c7b26; font-size:34px; font-weight:900; margin-bottom:0px; text-align:right;}
+.ylxx .en_ylxx{color:#6c7b26; font-size:17px; font-weight:900; margin-top:2px; text-align:right;}
+.ylxx .ylxx_content{ font-family:simhei; font-size:14px; margin-top:2px;color:#6c7c22;text-align:right;}
+.yjsh{width:100%;background-image: -moz-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -webkit-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -ms-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); height:882px;}
+.yjsh_center{position:relative; width:1200px; margin-left:auto; margin-right:auto;}
+.yjsh .img1{position:absolute; top:-40px; left:16px;}
+.yjsh .img2{position:absolute; top:507px; right:0px;}
+.yjsh .yjsh_title{position:absolute; top:80px; left:800px;}
+.yjsh .yjsh_title p{width:320px;color:#6c7c22; font-family:simhei; font-size:16px; margin-top:10px;}
+.yjsh .thr{position:absolute; top:377px; left:0px; overflow:hidden;} 
+.yjsh .thr div{ float:left; margin-right:1px; ;color:#4c4c4c; font-family:simhei; font-size:14px; margin-right:28px;}
+.yjsh .thr p{ margin-top:10px;width:230px; margin-left:0px;}
+.yjsh  .chengchuanchuidiao{ margin-top:35px;}
+.yjsh  .ganhaishibei{ margin-top:70px;}
+.yjsh_nav{ width:6px; height:880px; background:#ffffff; position:absolute; top:0px; left:754px; padding-top:30px; }
+.yjsh_nav img{ margin-left:-15px; margin-top:12px;}
+.yule{width:100%;background-image: -moz-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -webkit-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); background-image: -ms-linear-gradient( -43deg, rgb(195,222,100) 0%, rgb(165,195,84) 100%); height:936px;}
+.yule_center{position:relative; width:1200px; margin-left:auto; margin-right:auto;}
+.yule .img1{position:absolute; top:79px; left:0px;}
+.yule .img2{position:absolute; top:315px; left:223px;}
+.yule .img3{position:absolute; top:637px; left:0px;}
+.yule .img4{position:absolute; top:105px; left:800px;}
+.yule .img5{position:absolute; top:500px; left:763px;}
+.yule_nav{ width:6px; height:906px; background:#ffffff; position:absolute; top:0px; left:754px; padding-top:30px; }
+.yule_nav img{margin-left:-15px; margin-top:12px;}
+.yule_title{position:absolute; width:320px; top:122px; left:400px;width:300px; color:#6c7c22; font-family:simhei; font-size:18px; }
+.yule_title img{ margin-left:auto; margin-right:auto;}
+.pinzhibaozhang{width:100%; background-color:#dbf379; height:692px;}
+.pinzhibaozhang .pinzhibaozhang_center{width:1200px; margin-left:auto; margin-right:auto; overflow:hidden;}
+.pinzhibaozhang .img1{ margin-left:auto; margin-right:auto; display:block; padding-top:46px;}
+.pinzhibaozhang .pinzhibaozhang_center div{ width:154px;color:#6a781f; font-family:simhei; font-size:16px; text-align:center; margin-top:32px; float:left; margin-left:72px; margin-right:72px;}
+.pinzhibaozhang .pinzhibaozhang_center div img{ margin-left:auto; margin-right:auto;}
+.tao,.che{ margin-top:6px;}.yijian{ margin-top:-6px;}
+.a_left{left:5%;background-image:url(img/arrow_left.png);}
+.a_right{right:5%;background-image:url(img/arrow_right.png);}
+.a_left,.a_right{position:absolute;top:50%;width:30px;height:79px;z-index:2;cursor:pointer;margin-top:-40px;}
+.fengexian{ width:1200px; background-color:#b2cf5b; height:4px; margin-left:auto; margin-right:auto; margin-top:30px;}
+.lianxi_box{ width:500px; height:180px; margin-left:auto; margin-right:auto; margin-top:32px;}
+.lianxi_box img{ display:block; float:left;}
+.lianxi_box .weixin{ margin-right:140px; width: 180px; height: 180px;}
+.dianhua{ color:#6a781f; font-family:simhei; font-size:16px; text-align:center; margin-top:32px;}
+.dizhi{color:#6a781f; font-family:simhei; font-size:16px; text-align:center; margin-top:10px; margin-bottom:12px;}
+.beian {
+    color:#BABCBD; font-family:simhei; font-size:14px; text-align:center; margin-top:10px; margin-bottom:12px;
+}
+</style> 
+
+    <title>大连哈仙岛旅游-朗朗渔家</title>
+    <meta charset="utf-8" name="大连哈仙岛旅游，大连海岛，朗朗渔家，哈仙岛游玩" content="大连好玩的海岛，哈仙岛哪个渔家好，哈仙岛住宿哪家好，哈仙岛旅游攻略，哈仙岛二日游，哈仙岛住宿多少钱，广鹿岛和哈仙岛哪个好"> 
+
+    <meta name="viewport" content="width=1500, initial-scale=0.25, user-scalable=yes" />     
+    <meta name="apple-mobile-web-app-capable" content="yes" />   
+
+    <link rel="icon" href="//www.langlang2017.com/img/link_icon.png" type="image/x-icon">
+
+    <script>
+    function order(){ 
+        alert("感谢您的支持，您可以加生哥微信（电话）：159-4082-6861 进行详细询问，然后预定！哈仙岛朗朗渔家院期待您的光临！"); 
+    }
+</script>
+</head>
+
+<body>
+<div class="header">
+	<div class="center">
+        <div class="logo">
+            <a href="index.html"><img alt="朗朗渔家logo" src="img/logo.png"></a>
+        </div>
+        <div class="order"  onClick="order()" style="cursor:pointer;">预定</div>
+		<div class="nav">
+            <a>首页</a>
+            <a href="route.html">来岛路线</a>
+            <a href="FAQ.html">常见问题</a>
+            <a href="langlang.html">关于我们</a>
+
+<!--         	<a>海岛风光</a>
+            <a>常见问题</a> -->
+            
+        </div>
+    </div>
+
+</div>
+<div class="banner_box">
+	<span class="a_left"></span>
+    <span class="a_right"></span>
+	<ul>
+    	<li><img alt="大连哈仙岛出海打渔，渔家住宿条件，朗朗渔家" src="img/banner1.png"></li>
+        <li><img alt="大连旅游 哈仙岛旅游 夏季旅游 渔家乐 农家乐 出海打渔 海景房 朗朗渔家" src="img/banner2.png"></li>
+        <li><img alt="哈仙岛金沙滩 陪孩子去哈仙岛 适合孩子"  src="img/banner3.png"></li>
+        <li><img alt="哈仙岛金沙滩 陪孩子去哈仙岛 适合孩子" src="img/banner4.png"></li>
+
+    </ul>
+</div>
+
+<div class="langlang">
+	<div class="langlang1">
+    	<div class="langlang_nav">
+        	<img src="img/da1.png">
+            <img src="img/2.png">
+            <img src="img/3.png">
+            <img src="img/4.png">
+        </div>
+    	<img alt="大连哈仙岛海鲜 螃蟹" class="img1" src="img/langlang1.png">
+        <img alt="哈仙岛出海打渔 朗朗渔家渔民渔船" class="img2" src="img/langlang2.png">
+        <img alt="渔家乐美食 生蚝随便吃 扇贝管够吃" class="img3" src="img/langlang3.png">
+        <div class="langlang_title">
+        	<img alt="哈仙岛朗朗渔家"src="img/langlangyujia.png">
+            <p>朗朗渔家就在海边，窗外就是大海，是真正的海景房，背山望海。推窗看潮落潮涨，出门看日出日落。</p>
+            <img class="langlang_content" src="img/zhusu.png">
+            <img class="langlang_content" src="img/haixian.png">
+            <img class="langlang_content" src="img/dayu.png">
+        </div>
+        <div class="haxiandao">
+            <img src="img/哈仙岛旅游.png">
+            <p>不&nbsp;&nbsp;&nbsp;二&nbsp;&nbsp;&nbsp;之&nbsp;&nbsp;&nbsp;选</p>
+           	<div class="chi">
+            	<div class="chi_title">吃</div>
+                <div class="didaohaixian">地道海鲜</div>
+                <div class="chi_contect">真正的美食源于食材的本味，对于海鲜，也许并不需要什么复杂的加工，但一定要保证新鲜。</div>
+                <!-- 而我们评判新鲜的标准是“从海里捞上来不超过3分钟”。 -->
+            </div>
+            <div class="gege"></div>
+            <div class="zhu">
+            	<div class="zhu_title">住</div>
+                <div class="zzhaijingfang">真正海景房</div>
+                <div class="zhu_contect">不是所有能看到海的房子都叫海景房，但朗朗渔家出门10步就是海，我们的海景房货真价实！</div>
+            </div>
+            <div class="gege"></div>
+            <div class="wan">
+            	<div class="wan_title">玩</div>
+                <div class="chuhaidayu">出海打渔</div>  
+                <div class="wan_contect">自家有两条渔船，本身就以打渔为生。来哈仙岛朗朗渔家，坐渔船、去打渔，收获海岛渔家乐的原始快乐。</div>
+            </div>
+        </div>
+		<img class="img4" src="img/yu.png">
+        <img class="img5" src="img/chuan.png">    
+    </div>
+</div>
+<div class="haijingfang">
+<div class="haijingfang_center">
+	 <div class="haijingfang_nav">
+        	<img src="img/1.png">
+            <img src="img/da2.png">
+            <img src="img/3.png">
+            <img src="img/4.png">
+    </div>
+	<img class="img1" alt="适合两个人的海岛旅行"  src="img/fangzi.png">
+    <img class="img2" alt="哈仙岛海景房"  src="img/fangzi1.png">
+    <img class="img3" alt="住宿条件好一点儿，独立卫浴"  src="img/fangzi2.png">
+    <div class="haijingfang_title">
+        	<img src="img/haijingfang.png">
+            <p>海子有诗--面朝大海，春暖花开。推窗远望，静看潮起潮落；品一杯香茗，忆过往、忆故人！</p>
+            <!-- <p>朗朗渔家倚山傍海，我这有酒，你有故意吗？</p> -->
+            <!-- 朗朗渔家提供经济房型、四人空调间和带独立卫浴的大床房三种类型的房间。 -->
+    </div>
+    <div class="zzdhaijingfang">
+    	<div class="zzd_title">真正的海景房</div>
+        <p>来朗朗渔家，住真海景，出门10步到海边。距离海边实在太近了，在咱家的院里就可以看日出、日落。迎着海风，宁静、安然。</p>
+        <img src="img/jingjifang.png"></img>
+        <img src="img/kongtiaofang.png"></img>
+        <img src="img/jingpinfang.png"></img>
+        <img src="img/haijingfangicon.png"></img>
+        
+    </div>
+    <div class="ylxx">
+    	<p class="ylxx_title">观海望潮&nbsp;远离喧嚣</p>
+        <p class="en_ylxx">Enjoy seaview and get far away from urban life</p>
+        <p class="ylxx_content">享受心灵的旅途，让您的好心情，沐浴在阳光下，放飞在蓝天中，谱写一段您与海洋的故事。</p>
+        
+    </div>
+</div>
+</div>
+<div class="yjsh">
+	<div class="yjsh_center">
+    	<div class="yjsh_nav">
+        	<img src="img/1.png">
+            <img src="img/2.png">
+            <img src="img/da3.png">
+            <img src="img/4.png">
+    	</div>
+    	<img class="img1" alt="朗朗渔家可以出海打渔" src="img/yjsh_img1.png">
+        <img class="img2" alt="哈仙岛海钓" src="img/yjsh_img2.png">
+        <div class="yjsh_title">
+       		<img src="img/yujiashenghuo.png">
+            <p>朗朗渔家主要是以打渔为生，自己家有渔船，餐桌上的海鲜都是最新鲜的，可以说海鲜“刚出了海水，就入了锅”。而且您也可以跟着出海打渔，吃到自己钓的鱼、赶的海鲜。</p>
+        </div>
+        <div class="thr">
+            <div class="chuhaidayu">
+            	<img src="img/chuhaidayu.png">
+                <p>土生土长岛民，祖祖辈辈渔民。一网上来有虾蟹，留大放小积后人。</p>
+                <p>来哈仙岛朗朗渔家，体验真正的渔民生活，在这里感受当地渔民纯朴和宽广大海的无私，感受人与大自然的和谐共处。</p>
+            </div>
+            <div class="chengchuanchuidiao">
+            	 <img src="img/chengchuanhaidiao.png">
+                <p>农民种地靠牛，渔民养家靠船。船是渔民生存的根本。</p>
+                <p>行船又同行车，苍茫大海就是浩瀚天际，任你驰骋。行到水流湍急地，择一处鱼群密集处，放长杆！</p>
+            </div>
+            <div class="ganhaishibei">
+                <img src="img/ganhaishibei.png">
+                <p>拎上赶海的小桶，光着小脚丫，咱家门前就是海。</p>
+                <p>孩子抓小蟹，妻子拾贝壳，那个老谁家那小谁，别玩了，赶紧来照相！</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="yule">
+	<div class="yule_center">
+    <div class="yule_title">
+       		<img src="img/yulexiangmu.png">
+            <p>朗朗渔家还有一个宽敞的大院场地，供晚上点歌儿、篝火以及团队搞活动使用。当然如果您在晚上不想待在房间，也可以在院里纳凉聊天儿。</p>
+        </div>
+    
+    <div class="yule_nav">
+        	<img src="img/1.png">
+            <img src="img/2.png">
+            <img src="img/3.png">
+            <img src="img/da4.png">
+    	</div>
+    	<img class="img1" alt="哈仙岛 室外KTV" src="img/01ktv.png">
+        <img class="img2" alt="娱乐设施 麻将" src="img/02qipai.png">
+        <img class="img3" alt="团队活动 适合团建 篝火" src="img/02gouhuo.png">
+        <img class="img4" alt="宽敞 哈仙岛上唯一 台球厅" src="img/04taiqiu.png">
+        <img class="img5" alt="渔家院里的渔家烧烤 自助海鲜烧烤" src="img/05saokao.png">
+    </div>
+</div>
+<div class="pinzhibaozhang">
+	<div class="pinzhibaozhang_center">
+    <img class="img1" src="img/pinzhibaozhang.png">
+        <div class="xianxiao">
+        	<img src="img/xianxiao.png">
+            <p>先消费后付款，主动权始终在您手中</p>
+        </div>
+        <div class="tao">
+        	<img src="img/tao.png">
+            <p>淘宝交易，安全放心</p>
+        </div>
+         <div class="yijian">
+        	<img src="img/yijian.png">
+            <p>一键消费，中间不收取其他费用</p>
+        </div>
+        <div class="che">
+        	<img src="img/che.png">
+            <p>免费车接车送；代订离岛船票</p>
+        </div>
+    </div>
+    <div class="fengexian"> </div>
+    <div class="lianxi_box">
+    <img class="weixin" src="img/weixin.png">
+    <a target="_blank" href="https://langlang2017.taobao.com"><img  class="taobao" src="img/taobao.png"></a>
+    </div>
+   	<div class="dianhua">联系电话：15940826861</div>
+    <div class="dizhi">地址：辽宁省大连市哈仙岛北海岸</div>
+    <div class="beian">Copyright © 2006-2018 大连哈仙岛朗朗渔家 版权所有 <a href="http://www.miitbeian.gov.cn/" style="text-decoration: none;color: #BABCBD;">辽ICP备18007088号-1</a></div>
+</div>
+</body>
+</html>
